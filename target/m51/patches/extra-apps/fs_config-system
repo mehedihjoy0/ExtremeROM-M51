@@ -1,0 +1,9 @@
+system 0 0 755 capabilities=0x0
+system/app 0 0 755 capabilities=0x0
+system/app/DrawingAssist 0 0 755 capabilities=0x0
+system/app/DrawingAssist/DrawigAssist.apk 0 0 644 capabilities=0x0
+system/app/VisionCore 0 0 755 capabilities=0x0
+system/app/VisionCore/VisionCore.apk 0 0 644 capabilities=0x0
+system/priv-app 0 0 755 capabilities=0x0
+system/priv-app/SpriteWallpaper 0 0 755 capabilities=0x0
+system/priv-app/SpriteWallpaper/SpriteWallpaper.apk 0 0 644 capabilities=0x0
