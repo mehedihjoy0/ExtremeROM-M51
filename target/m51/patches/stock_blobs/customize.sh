@@ -66,7 +66,12 @@ ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib/vendor.samsung.hardware.biometrics.face@
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib/vendor.samsung.hardware.biometrics.face@3.0.so" 0 0 644 "u:object_r:vendor_file:s0"
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.biometrics.face@2.0.so" 0 0 644 "u:object_r:vendor_file:s0"
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.biometrics.face@3.0.so" 0 0 644 "u:object_r:vendor_file:s0"
-sed -i '/vendor.samsung.hardware.biometrics.face/,/<\/hal>/ s/version>2\.0</version>3.0</; /vendor.samsung.hardware.biometrics.face/,/<\/hal>/ s/fqname>@2\.0::ISehBiometricsFace\/default</fqname>@3.0::ISehBiometricsFace\/default</' "$WORK_DIR/vendor/etc/vintf/manifest.xml"
+sed -i '/vendor.samsung.hardware.biometrics.face/,/<\/hal>/ {
+    /<version>2.0<\/version>/a\
+    <version>3.0<\/version>
+    /<fqname>@2.0::ISehBiometricsFace\/default<\/fqname>/a\
+    <fqname>@3.0::ISehBiometricsFace\/default<\/fqname>
+}' "$WORK_DIR/vendor/etc/vintf/manifest.xml"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding a73xqxx light blobs"
