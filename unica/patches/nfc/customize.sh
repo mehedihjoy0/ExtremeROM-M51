@@ -1,6 +1,5 @@
 if [[ "$TARGET_NFC_CHIP_VENDOR" == "SLSI" && "$SOURCE_NFC_CHIP_VENDOR" == "NXP" ]]; then
     BLOBS_LIST="
-    system/etc/libnfc-nci.conf
     system/lib64/libnfc_nxpsn_jni.so
     system/priv-app/NfcNci/lib/arm64/libnfc_nxpsn_jni.so
     "
