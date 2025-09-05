@@ -3,3 +3,38 @@ ro.camerax.extensions.enabled=
 
 # Netflix
 ro.netflix.bsp_rev=Q7250-19133-1
+
+####Additional Props####
+
+# Basic debug / profiler
+profiler.force_disable_err_rpt=1
+profiler.force_disable_ulog=1
+logcat.live=disable
+
+# Radio / power / sleep
+ro.ril.disable.power.collapse=1
+pm.sleep_mode=1
+windowsmgr.max_events_per_sec=60
+wifi.supplicant_scan_interval=180
+
+# Enable low-ram
+debug.force_low_ram=false
+
+# Kernel & JNI checks 
+ro.kernel.android.checkjni=0
+ro.kernel.checkjni=0
+
+# Persist / UI
+persist.sys.purgeable_assets=1
+persist.sys.use_dithering=0
+persist.sys.ui.hw=1
+persist.sys.strictmode.disable=1
+
+# Bluetooth / A2DP controls
+persist.bluetooth.disableabsvol=true
+persist.bluetooth.a2dp_offload.disabled=1
+bluetooth.a2dp.sink.enabled=false
+
+# Disable Samsung/analytics reporting
+ro.sem.analytics.enable=false
+ro.samsung.analytics.enable=false

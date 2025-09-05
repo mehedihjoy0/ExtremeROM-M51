@@ -111,8 +111,6 @@ for blob in $BLOBS_LIST
 do
     ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0"
 done
-ADD_TO_WORK_DIR "a73xqxx" "system" "system/lib64/libFaceRestoration.camera.samsung.so" 0 0 644 "u:object_r:system_lib_file:s0"
-ADD_TO_WORK_DIR "a73xqxx" "system" "system/lib64/libImageCropper.camera.samsung.so" 0 0 644 "u:object_r:system_lib_file:s0"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Fixing AI Photo Editor"
