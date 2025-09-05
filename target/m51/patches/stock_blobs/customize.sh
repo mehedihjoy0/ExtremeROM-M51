@@ -68,9 +68,9 @@ ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.biometrics.fac
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.biometrics.face@3.0.so" 0 0 644 "u:object_r:vendor_file:s0"
 sed -i '/vendor.samsung.hardware.biometrics.face/,/<\/hal>/ {
     /<version>2.0<\/version>/a\
-    <version>3.0<\/version>
+        <version>3.0<\/version>
     /<fqname>@2.0::ISehBiometricsFace\/default<\/fqname>/a\
-    <fqname>@3.0::ISehBiometricsFace\/default<\/fqname>
+        <fqname>@3.0::ISehBiometricsFace\/default<\/fqname>
 }' "$WORK_DIR/vendor/etc/vintf/manifest.xml"
 LOG_STEP_OUT
 
