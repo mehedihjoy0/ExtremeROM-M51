@@ -37,7 +37,7 @@ DOWNLOAD_FIRMWARE()
         # Special handling for source firmware - download from the specified URL
         mkdir -p "$ODIN_DIR/${MODEL}_${CSC}"
         echo "- Downloading source firmware from custom URL..."
-        curl -s --retry 5 --retry-delay 5 "https://38-samfw.cloud/v2/IxJCDiMnLi8eAB4aNSUzCzQnLj8zCB4lFzssIDs2ByAzMUEgOzEUQDMQMCMBOyw/PBcUBy8wLBYjJS4gNBsuCAMkQQkXLC8KLyUuEC4nFBcSNkElPDYhMSMHMxEjJCAbAzsfIwkvCh01Jx0xITYwBjU4LDYeCy8NAwgFQDwRBwYhNho5EiwsHB4bBkIeCzwGHgM8FCMkNDEjCxVACTghHzInDQYuFx8rIwAvJCFAMxE8EQY5NRshDjURPho0ES8kNRYhOR44LwsJEQc5NBsjKyEAPg4hAAYsLjgeLDQRHg4yJTMsMiUNKzwAPh8mGzk5FyUzDTUHQQEuByADISxBIwMnOUANQAokMzYCICMXPjkDFzA1CS8pDTsxHhwzQAZCOzEHHjMsNCsNMT4eODAeHgkvIxQjAwcEODEvLxcHPgMBAwgGDSwpPDskKQgXOzQwOAAhKTw/FD01OCBCJhseLzMwLyU1By45IUACCS84CEAeByEjAzEwHw8vIBYvBxUAARcsQCEXIScjOAZCIwM0MB4kBQYeFjQUIw0TEw==" -o "$ODIN_DIR/${MODEL}_${CSC}/firmware.zip"
+        curl -s --retry 5 --retry-delay 5 "https://22-samfw.cloud/v2/IxJCDiMnLgMSOwgwMwAHHx4vLh4jNh4lFzssIDs2ByAzMUEgOzEUQDMQMCMBOyw/AwgCHAMwMwcvJDsGMxtBHjsHKR8XCC4WIRspOjMIQQ4SQC5AMiQpOjIkIgYzFiEDHgcuAAM2Nj8hCwhANCQgHgEIBh8DFzMHLzAhHDQxCjk0OAclNBsuGgM4BkIeCzwGHgM8FCMkNDEjCxVACTghHzInDQYuFx8rIwAvJCFAMxE8EQY5NRshDjURPho0ES8kNRYhOR44LwsJEQc5NBsjKyEAPg4hAAYsLjgeLDQRHg4yJTMsMiUNKzwAPh8mGzk5FyUzDTUHQQEuByADISxBIwMnOUANQAokMzYCICMXPjkDFzA1CS8pDTsxHhwzQAZCOzEHHjMsNCsNMT4eODAeHgkvIxQjAwcEODEvLxcHPgMBAwgGDSwpPDskKQgXOzQwOAAhKTw/FD01OCBCJhsCAR4XFBYNNj4xLxEpLzUHLgojFzM6AQceDTMxQRsvJz4fAxYzChc2MzwjOAZCIwM0MAEWIh0BFjQdIw0TEw==" -o "$ODIN_DIR/${MODEL}_${CSC}/firmware.zip"
         
         echo "- Extracting firmware..."
         unzip -q "$ODIN_DIR/${MODEL}_${CSC}/firmware.zip" -d "$ODIN_DIR/${MODEL}_${CSC}"
@@ -45,24 +45,16 @@ DOWNLOAD_FIRMWARE()
         
         touch "$ODIN_DIR/${MODEL}_${CSC}/.downloaded"
     elif [ "$i" == "$TARGET_FIRMWARE" ]; then
-        # Special handling for target firmware - download from the specified URL
+        # Special handling for source firmware - download from the specified URL
         mkdir -p "$ODIN_DIR/${MODEL}_${CSC}"
-        echo "- Downloading target firmware from custom URL..."
-        curl -s --retry 5 --retry-delay 5 "https://ia801606.us.archive.org/29/items/samfw.-com-sm-m-515-f-bkd-m-515-fxxs-6-dxe-3-fac.-7z_20250628/SAMFW.COM_SM-M515F_BKD_M515FXXS6DXE3_fac.7z" -o "$ODIN_DIR/${MODEL}_${CSC}/firmware.7z"
-        curl -s --retry 5 --retry-delay 5 "https://gitlab.com/mh506370/firmware/-/raw/main/BL_M515FXXS6DXE3_M515FXXS6DXE3_MQB80525942_REV00_user_low_ship_MULTI_CERT.7z" -o "$ODIN_DIR/${MODEL}_${CSC}/firmware-bl.7z"
+        echo "- Downloading source firmware from custom URL..."
+        curl -s --retry 5 --retry-delay 5 "https://22-samfw.cloud/v2/IxJCDiMnLiY8Ayk2ARs0Py4RLCU0Ox4lFzssIDs2ByAzMUEgOzEUQDMQMCMBOyw/MzsUBDsWPAYSJzMaNQsvKxI7BwI1JQIUAzshBQEDIRc1MSwANREzNgMLBy07Aw05AywCDi8nKRwzOzApNRsuMwMHND8jJSwCMggHGjUvIA4hQCkGOz8xHQEbBkIjCyI/Iws8MQEWCDAeCw0xCREHOTQbIyshAD4OIQAGLC44Hiw0ER4OMiUzLDIlDSs8AD4fJhsGOg8HCkA8AywnCRc+Di8LBxAzBy4RDxYpKTwkHjUeBylCJgceIAM7ITgJNh4cAy8+AwMSMB4eAwgwMyw+BC82PiYDAzsGHjshPBcHIwAzBykHHgc+ETwXIysPESw5JhsGFyMvLj0uNhQwDS8pER4LMzMSCy8HNBAxPy42PB0uLykaEgMpCzQDIRE0FgdCJhYIQB4DFTkBFhUAHhYjEw==" -o "$ODIN_DIR/${MODEL}_${CSC}/firmware.zip"
         
         echo "- Extracting firmware..."
-        7z x -y "$ODIN_DIR/${MODEL}_${CSC}/firmware.7z" "-o/$ODIN_DIR/${MODEL}_${CSC}"
-        rm -f "$ODIN_DIR/${MODEL}_${CSC}/firmware.7z"
-        7z x -y "$ODIN_DIR/${MODEL}_${CSC}/firmware-bl.7z" "-o/$ODIN_DIR/${MODEL}_${CSC}"
-        rm -f "$ODIN_DIR/${MODEL}_${CSC}/firmware-bl.7z"
+        unzip -q "$ODIN_DIR/${MODEL}_${CSC}/firmware.zip" -d "$ODIN_DIR/${MODEL}_${CSC}"
+        rm -f "$ODIN_DIR/${MODEL}_${CSC}/firmware.zip"
         
-        touch "$ODIN_DIR/${MODEL}_${CSC}/.downloaded"
-    else
-        # Original download method for other firmwares
-        { samfirm -m "$MODEL" -r "$CSC" -i "$IMEI" > /dev/null; } 2>&1 \
-            && touch "$ODIN_DIR/${MODEL}_${CSC}/.downloaded" \
-            || exit 1
+        touch "$ODIN_DIR/${MODEL}_${CSC}/.downlod         || exit 1
     fi
     
     [ -f "$ODIN_DIR/${MODEL}_${CSC}/.downloaded" ] && {
