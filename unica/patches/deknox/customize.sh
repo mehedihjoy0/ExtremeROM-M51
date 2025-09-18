@@ -1,8 +1,6 @@
 SET_FLOATING_FEATURE_CONFIG "SEC_FLOATING_FEATURE_FRAMEWORK_SUPPORT_BLOCKCHAIN_SERVICE" --delete
 
-if [ "$TARGET_SINGLE_SYSTEM_IMAGE" == "qssi" ]; then
-    ADD_TO_WORK_DIR "a05snsdxx" "system" "."
-fi
+ADD_TO_WORK_DIR "a05snsdxx" "system" "."
 
 DELETE_FROM_WORK_DIR "system" "system/app/BlockchainBasicKit"
 DELETE_FROM_WORK_DIR "system" "system/bin/dualdard"
@@ -92,6 +90,11 @@ DELETE_FROM_WORK_DIR "system" "system/priv-app/KnoxZtFramework"
 DELETE_FROM_WORK_DIR "system" "system/priv-app/SEMFactoryApp"
 DELETE_FROM_WORK_DIR "system" "system/priv-app/knoxanalyticsagent"
 DELETE_FROM_WORK_DIR "system" "system/priv-app/knoxvpnproxyhandler"
+DELETE_FROM_WORK_DIR "system" "system/lib/libsec_semAidl.so"
+DELETE_FROM_WORK_DIR "system" "system/lib/vendor.samsung.hardware.security.sem-V1-ndk.so"
+DELETE_FROM_WORK_DIR "system" "system/lib64/libsec_semAidl.so"
+DELETE_FROM_WORK_DIR "system" "system/lib64/vendor.samsung.hardware.security.sem-V1-ndk.so"
+
 if [[ "$TARGET_API_LEVEL" -ge 34 ]]; then
     DELETE_FROM_WORK_DIR "system" "system/bin/fabric_crypto"
     DELETE_FROM_WORK_DIR "system" "system/etc/vintf/manifest/fabric_crypto_manifest.xml"
@@ -103,11 +106,4 @@ if [[ "$TARGET_API_LEVEL" -ge 34 ]]; then
     DELETE_FROM_WORK_DIR "system" "system/lib64/com.samsung.security.fabric.cryptod-V1-cpp.so"
     DELETE_FROM_WORK_DIR "system" "system/framework/FabricCryptoLib.jar"
     DELETE_FROM_WORK_DIR "system" "system/priv-app/KmxService"
-fi
-
-if [[ "$TARGET_SINGLE_SYSTEM_IMAGE" = "qssi" ]]; then
-    DELETE_FROM_WORK_DIR "system" "system/lib/libsec_semAidl.so"
-    DELETE_FROM_WORK_DIR "system" "system/lib/vendor.samsung.hardware.security.sem-V1-ndk.so"
-    DELETE_FROM_WORK_DIR "system" "system/lib64/libsec_semAidl.so"
-    DELETE_FROM_WORK_DIR "system" "system/lib64/vendor.samsung.hardware.security.sem-V1-ndk.so"
 fi
