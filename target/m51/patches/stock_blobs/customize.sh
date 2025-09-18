@@ -64,7 +64,6 @@ LOG_STEP_IN "- Fixing RIL"
 sed -i "s/1.4::IRadio/1.5::IRadio/g" "$WORK_DIR/vendor/etc/vintf/manifest.xml"
 LOG_STEP_OUT
 
-
 LOG_STEP_IN "- Adding a73xqxx biometric face blobs"
 DELETE_FROM_WORK_DIR "vendor" "bin/hw/vendor.samsung.hardware.biometrics.face@2.0-service"
 DELETE_FROM_WORK_DIR "vendor" "etc/init/vendor.samsung.hardware.biometrics.face@2.0-service.rc"
@@ -84,7 +83,6 @@ LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding a73xqxx light blobs"
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "bin/hw/vendor.samsung.hardware.light-service" 0 2000 755 "u:object_r:hal_light_default_exec:s0"
-ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/android.hardware.light-V1-ndk_platform.so" 0 0 644 "u:object_r:vendor_file:s0"
 ADD_TO_WORK_DIR "a73xqxx" "vendor" "lib64/vendor.samsung.hardware.light-V1-ndk_platform.so" 0 0 644 "u:object_r:vendor_file:s0"
 LOG_STEP_OUT
 
@@ -118,7 +116,7 @@ ADD_TO_WORK_DIR "a52qnsxx" "system_ext" "lib64/libfm-hci.so" 0 0 644 "u:object_r
 ADD_TO_WORK_DIR "a52qnsxx" "system_ext" "lib64/vendor.qti.hardware.fm@1.0.so" 0 0 644 "u:object_r:system_lib_file:s0"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Adding A73xqxx vintf manifest"
+LOG_STEP_IN "- Adding a73xqxx vintf manifest"
 ADD_TO_WORK_DIR "a73xqxx" "system" "system/etc/vintf/manifest.xml" 0 0 644 "u:object_r:system_file:s0"
 LOG_STEP_OUT
 
