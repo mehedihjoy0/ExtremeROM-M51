@@ -155,7 +155,7 @@ LOG_STEP_OUT
 
 LOG_STEP_IN "- Removing Soundbooster 1050"
 DELETE_FROM_WORK_DIR "vendor" "lib/lib_SoundBooster_ver1050.so"
-DELETE_FROM_WORK_DIR "vendor" "lib/libsamsungSoundbooster_plus.so"
+DELETE_FROM_WORK_DIR "vendor" "lib/soundfx/libsamsungSoundbooster_plus.so"
 DELETE_FROM_WORK_DIR "vendor" "lib64/lib_SoundBooster_ver1050.so"
-DELETE_FROM_WORK_DIR "vendor" "lib64/libsamsungSoundbooster_plus.so"
+DELETE_FROM_WORK_DIR "vendor" "lib64/soundfx/libsamsungSoundbooster_plus.so"
 LOG_STEP_OUT
