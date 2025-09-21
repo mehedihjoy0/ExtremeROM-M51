@@ -8,6 +8,7 @@ LOG "- Applying prop spoofer"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.veritymode enforcing"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.warranty_bit 0"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n sys.oem_unlock_allowed 0"
+    echo "    exec u:r:init:s0 root root -- /system/bin/settings put global ram_expand_size_list 0,1,2,4,6,8,10,12,14,16,18,20,22,24"
     echo ""
 } >> "$WORK_DIR/system/system/etc/init/hw/init.rc"
 
