@@ -103,13 +103,3 @@ fi
 HEX_PATCH "$WORK_DIR/system/system/lib64/libbluetooth_jni.so" \
     "1ff828ab5e39480500352800805228ab" "1ff828ab5e392a0000142800805228ab"
     
-LOG_STEP_IN "- Setting casefold props"
-SET_PROP "vendor" "external_storage.projid.enabled" "1"
-SET_PROP "vendor" "external_storage.casefold.enabled" "1"
-SET_PROP "vendor" "external_storage.sdcardfs.enabled" "0"
-SET_PROP "vendor" "persist.sys.fuse.passthrough.enable" "true"
-LOG_STEP_OUT
-
-LOG_STEP_IN "- Setting FUSE passthough"
-SET_PROP "vendor" "persist.sys.fuse.passthrough.enable" "true"
-LOG_STEP_OUT
