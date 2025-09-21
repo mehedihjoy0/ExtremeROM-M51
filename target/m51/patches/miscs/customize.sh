@@ -5,25 +5,6 @@ sed -i "/# Removed by /d" "$WORK_DIR/product/etc/build.prop" \
     && sed -i "$(sed -n "/provisioning.hostname/=" "$WORK_DIR/product/etc/build.prop" | sed "2p;d")d" "$WORK_DIR/product/etc/build.prop"
 LOG_STEP_OUT
 
-LOG "- Disabling encryption"
-# Replace encryption with fscompress
-LINE=$(sed -n "/^\/dev\/block\/by-name\/userdata/=" "$WORK_DIR/vendor/etc/fstab.default")
-LINE2=$(sed -n "/^\/dev\/block\/by-name\/userdata/=" "$WORK_DIR/vendor/etc/fstab.emmc")
-sed -i "${LINE}s/fileencryption=ice/fscompress/g" "$WORK_DIR/vendor/etc/fstab.default"
-sed -i "${LINE}s/fileencryption=ice/fscompress/g" "$WORK_DIR/vendor/etc/fstab.emmc"
-
-LOG_STEP_IN "- Enabling updateable APEX images"
-SET_PROP "vendor" "ro.apex.updatable" "true"
-LOG_STEP_OUT
-
-LOG_STEP_IN "- Enabling IncrementalFS"
-SET_PROP "vendor" "ro.incremental.enable" "yes"
-LOG_STEP_OUT
-
-LOG_STEP_IN "- Enabling FS Verity"
-SET_PROP "vendor" "ro.apk_verity.mode" "2"
-LOG_STEP_OUT
-
 LOG_STEP_IN "- Disabling A2DP Offload"
 SET_PROP "system" ro.bluetooth.a2dp_offload.supported "false"
 SET_PROP "system" persist.bluetooth.a2dp_offload.disabled "true"
