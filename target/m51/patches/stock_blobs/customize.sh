@@ -165,10 +165,3 @@ LOG_STEP_OUT
 LOG_STEP_IN "- Adding pa1qxx surfaceflinger"
 ADD_TO_WORK_DIR "pa1qxx" "system" "bin/surfaceflinger" 0 2000 755 "u:object_r:surfaceflinger_exec:s0"
 LOG_STEP_OUT
-
-LOG_STEP_IN "- Removing Soundbooster 1050"
-DELETE_FROM_WORK_DIR "vendor" "lib/lib_SoundBooster_ver1050.so"
-DELETE_FROM_WORK_DIR "vendor" "lib/soundfx/libsamsungSoundbooster_plus.so"
-DELETE_FROM_WORK_DIR "vendor" "lib64/lib_SoundBooster_ver1050.so"
-DELETE_FROM_WORK_DIR "vendor" "lib64/soundfx/libsamsungSoundbooster_plus.so"
-LOG_STEP_OUT
