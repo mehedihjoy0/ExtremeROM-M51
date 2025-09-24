@@ -5,13 +5,6 @@ sed -i "/# Removed by /d" "$WORK_DIR/product/etc/build.prop" \
     && sed -i "$(sed -n "/provisioning.hostname/=" "$WORK_DIR/product/etc/build.prop" | sed "2p;d")d" "$WORK_DIR/product/etc/build.prop"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Disabling A2DP Offload"
-SET_PROP "system" ro.bluetooth.a2dp_offload.supported "false"
-SET_PROP "system" persist.bluetooth.a2dp_offload.disabled "true"
-SET_PROP "vendor" ro.bluetooth.a2dp_offload.supported "false"
-SET_PROP "vendor" persist.bluetooth.a2dp_offload.disabled "true"
-LOG_STEP_OUT
-
 LOG_STEP_IN "- Setting SF flags"
 SET_PROP "vendor" "debug.sf.latch_unsignaled" "1"
 SET_PROP "vendor" "debug.sf.high_fps_late_app_phase_offset_ns" "0"
@@ -43,63 +36,3 @@ sed -i '$d' "$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml"
     echo "    <feature name=\"android.software.controls\"/>"
     echo "</permissions>"
 } >> "$WORK_DIR/vendor/etc/permissions/handheld_core_hardware.xml"
-
-LOG_STEP_IN "- Setting stock Bluetooth profiles" # from M625F 13
-SET_PROP "product" "bluetooth.profile.asha.central.enabled" "true"
-SET_PROP "product" "bluetooth.profile.a2dp.source.enabled" "true"
-SET_PROP "product" "bluetooth.profile.avrcp.target.enabled" "true"
-SET_PROP "product" "bluetooth.profile.bap.broadcast.assist.enabled" "false"
-SET_PROP "product" "bluetooth.profile.bap.broadcast.source.enabled" "false"
-SET_PROP "product" "bluetooth.profile.bap.unicast.client.enabled" "false"
-SET_PROP "product" "bluetooth.profile.bas.client.enabled" "false"
-SET_PROP "product" "bluetooth.profile.csip.set_coordinator.enabled" "false"
-SET_PROP "product" "bluetooth.profile.gatt.enabled" "true"
-SET_PROP "product" "bluetooth.profile.hap.client.enabled" "false"
-SET_PROP "product" "bluetooth.profile.hfp.ag.enabled" "true"
-SET_PROP "product" "bluetooth.profile.hid.device.enabled" "true"
-SET_PROP "product" "bluetooth.profile.hid.host.enabled" "true"
-SET_PROP "product" "bluetooth.profile.map.server.enabled" "true"
-SET_PROP "product" "bluetooth.profile.mcp.server.enabled" "false"
-SET_PROP "product" "bluetooth.profile.opp.enabled" "false"
-SET_PROP "product" "bluetooth.profile.pan.nap.enabled" "true"
-SET_PROP "product" "bluetooth.profile.pan.panu.enabled" "true"
-SET_PROP "product" "bluetooth.profile.pbap.server.enabled" "true"
-SET_PROP "product" "bluetooth.profile.sap.server.enabled" "true"
-SET_PROP "product" "bluetooth.profile.ccp.server.enabled" "false"
-SET_PROP "product" "bluetooth.profile.vcp.controller.enabled" "false"
-
-ADD_TO_WORK_DIR "b0sxxx" "system" "system/apex/com.android.btservices.apex" 0 0 644 "u:object_r:system_file:s0"
-LOG_STEP_OUT
-
-# BT-lib-patch
-if [ ! -f "$WORK_DIR/system/system/lib64/libbluetooth_jni.so" ]; then
-    LOG_STEP_IN "- Extracting libbluetooth_jni.so from com.android.btservices.apex"
-
-    [ -d "$TMP_DIR" ] && EVAL "rm -rf \"$TMP_DIR\""
-    mkdir -p "$TMP_DIR"
-
-    EVAL "unzip -j \"$WORK_DIR/system/system/apex/com.android.btservices.apex\" \"apex_payload.img\" -d \"$TMP_DIR\""
-
-    if ! sudo -n -v &> /dev/null; then
-        LOG "\033[0;33m! Asking user for sudo password\033[0m"
-        if ! sudo -v 2> /dev/null; then
-            ABORT "Root permissions are required to unpack APEX image"
-        fi
-    fi
-
-    mkdir -p "$TMP_DIR/tmp_out"
-    EVAL "sudo mount -o ro \"$TMP_DIR/apex_payload.img\" \"$TMP_DIR/tmp_out\""
-    EVAL "sudo cat \"$TMP_DIR/tmp_out/lib64/libbluetooth_jni.so\" > \"$WORK_DIR/system/system/lib64/libbluetooth_jni.so\""
-
-    EVAL "sudo umount \"$TMP_DIR/tmp_out\""
-    rm -rf "$TMP_DIR"
-
-    SET_METADATA "system" "system/lib64/libbluetooth_jni.so" 0 0 644 "u:object_r:system_lib_file:s0"
-
-    LOG_STEP_OUT
-fi
-
-# https://github.com/duhansysl/Bluetooth-Library-Patcher/blob/67e598ad142ed296b487a7a4585927c993d4f35d/hexpatcher.sh#L43
-HEX_PATCH "$WORK_DIR/system/system/lib64/libbluetooth_jni.so" \
-    "1ff828ab5e39480500352800805228ab" "1ff828ab5e392a0000142800805228ab"
-    
