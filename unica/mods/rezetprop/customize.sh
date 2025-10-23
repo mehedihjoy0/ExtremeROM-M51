@@ -1,5 +1,5 @@
 LOG "- Applying prop spoofer"
-
+SECURITY_PATCH="$(GET_PROP "ro.build.version.security_patch")"
 {
     echo ""
     echo "on property:service.bootanim.exit=1"
@@ -15,6 +15,7 @@ LOG "- Applying prop spoofer"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_phantom_processes 2147483647"
     echo "    exec u:r:init:s0 root root -- /system/bin/settings put global settings_enable_monitor_phantom_procs false"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_empty_time_millis 43200000"
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.security_patch "$SECURITY_PATCH"
     echo ""
 } >> "$WORK_DIR/system/system/etc/init/hw/init.rc"
 
