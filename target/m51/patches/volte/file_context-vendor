@@ -1,4 +1,7 @@
 /vendor u:object_r:vendor_file:s0
+/vendor/bin u:object_r:vendor_file:s0
+/vendor/bin/hw u:object_r:vendor_file:s0
+/vendor/bin/hw/rild u:object_r:rild_exec:s0
 /vendor/etc u:object_r:vendor_file:s0
 /vendor/etc/init u:object_r:vendor_file:s0
 /vendor/etc/init/emservice\.rc u:object_r:vendor_configs_file:s0

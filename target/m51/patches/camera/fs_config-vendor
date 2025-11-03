@@ -1,4 +1,7 @@
 vendor 0 0 755 capabilities=0x0
+vendor/bin 0 2000 751 capabilities=0x0
+vendor/bin/hw 0 2000 751 capabilities=0x0
+vendor/bin/hw/vendor.samsung.hardware.snap-service 0 2000 755 capabilities=0x0
 vendor/etc 0 0 755 capabilities=0x0
 vendor/etc/init 0 0 755 capabilities=0x0
 vendor/etc/init/vendor.samsung.hardware.snap-default.rc 0 0 644 capabilities=0x0

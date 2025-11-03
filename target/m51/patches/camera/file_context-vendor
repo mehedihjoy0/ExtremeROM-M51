@@ -1,4 +1,7 @@
 /vendor u:object_r:vendor_file:s0
+/vendor/bin u:object_r:vendor_file:s0
+/vendor/bin/hw u:object_r:vendor_file:s0
+/vendor/bin/hw/vendor\.samsung\.hardware\.snap-service u:object_r:snap_hidl_exec:s0
 /vendor/etc u:object_r:vendor_configs_file:s0
 /vendor/etc/init u:object_r:vendor_configs_file:s0
 /vendor/etc/init/vendor\.samsung\.hardware\.snap-default\.rc u:object_r:vendor_configs_file:s0

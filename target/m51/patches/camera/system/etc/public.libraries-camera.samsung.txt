@@ -1,8 +1,3 @@
-libC2paDps.camera.samsung.so
-libtflite2.myfilters.camera.samsung.so
-libportrait_controller_engine.camera.samsung.so
-libportrait_controller_interface_jni.camera.samsung.so
-libsecbufferhandler.camera.samsung.so
 libBeauty_v4.camera.samsung.so
 libexifa.camera.samsung.so
 libjpega.camera.samsung.so

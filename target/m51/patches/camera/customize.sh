@@ -85,7 +85,6 @@ LOG_STEP_OUT
 
 LOG_STEP_IN "- Adding Stock polarr libs"
 ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/etc/public.libraries-polarr.txt" 0 0 644 "u:object_r:system_file:s0"
-LOG_STEP_OUT
 
 BLOBS_LIST="
 system/lib64/libBestComposition.polarr.so
@@ -93,9 +92,20 @@ system/lib64/libFeature.polarr.so
 system/lib64/libPolarrSnap.polarr.so
 system/lib64/libTracking.polarr.so
 system/lib64/libYuv.polarr.so
+"
+
+for blob in $BLOBS_LIST
+do
+    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0"
+done
+LOG_STEP_OUT
+
+BLOBS_LIST="
 system/lib64/libFace_Landmark_Engine.camera.samsung.so
+system/lib64/libFaceRestoration.camera.samsung.so
 system/lib64/libFacialStickerEngine.arcsoft.so
 system/lib64/libHpr_RecFace_dl_v1.0.camera.samsung.so
+system/lib64/libImageCropper.camera.samsung.so
 system/lib64/libImageTagger.camera.samsung.so
 system/lib64/libPortraitDistortionCorrection.arcsoft.so
 system/lib64/libhigh_dynamic_range.arcsoft.so
@@ -106,10 +116,12 @@ system/lib64/libsaiv_HprFace_cmh_support_jni.camera.samsung.so
 system/lib64/libsurfaceutil.camera.samsung.so
 system/lib64/libtensorflowLite.myfilter.camera.samsung.so
 system/lib64/libtensorflowlite_inference_api.myfilter.camera.samsung.so
+system/lib64/libMyFilter.camera.samsung.so
+system/lib64/libtflite2.myfilters.camera.samsung.so
 "
 for blob in $BLOBS_LIST
 do
-    ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0"
+    ADD_TO_WORK_DIR "a73xqxx" "system" "$blob" 0 0 644 "u:object_r:system_lib_file:s0"
 done
 LOG_STEP_OUT
 
@@ -125,15 +137,9 @@ sed -i \
     "$WORK_DIR/system/system/lib64/libPortraitSolution.camera.samsung.so"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Fixing Studio Video Editor"
-ADD_TO_WORK_DIR "a36xqnaxx" "system" "system/lib64/libMyFilter.camera.samsung.so" 0 0 644 "u:object_r:system_file:s0"
-ADD_TO_WORK_DIR "a36xqnaxx" "system" "system/lib64/libtflite2.myfilters.camera.samsung.so" 0 0 644 "u:object_r:system_file:s0"
-LOG_STEP_OUT
-
 LOG_STEP_IN "- Fixing Portrait"
 DELETE_FROM_WORK_DIR "vendor" "bin/hw/vendor.samsung.hardware.snap@1.2-service"
 DELETE_FROM_WORK_DIR "vendor" "etc/init/vendor.samsung.hardware.snap@1.2-service.rc"
-ADD_TO_WORK_DIR "a52qnsxx" "vendor" "bin/hw/vendor.samsung.hardware.snap-service" 0 2000 755 "u:object_r:snap_hidl_exec:s0"
 MANIFEST="$WORK_DIR/vendor/etc/vintf/manifest.xml"
 HIDL_HAL="<hal format=\"hidl\">\\n        <name>vendor.samsung.hardware.snap</name>\\n        <transport>hwbinder</transport>\\n        <version>1.2</version>\\n        <interface>\\n            <name>ISehSnap</name>\\n            <instance>default</instance>\\n        </interface>\\n        <fqname>@1.2::ISehSnap/default</fqname>\\n    </hal>"
 AIDL_HAL="<hal format=\"aidl\">\\n        <name>vendor.samsung.hardware.snap</name>\\n        <fqname>ISehSnap/default</fqname>\\n    </hal>"
