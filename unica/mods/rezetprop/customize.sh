@@ -5,7 +5,6 @@ MODEL="$(GET_PROP "ro.product.system.model")"
 NAME="$(GET_PROP "ro.product.system.name")" 
 BUILD_ID="$(GET_PROP "ro.build.id")" 
 INCREMENTAL="$(GET_PROP "ro.build.version.incremental")" 
-BUILD_DESCRIPTION="$(GET_PROP "ro.build.description")"
 {
     echo ""
     echo "on property:service.bootanim.exit=1"
@@ -26,7 +25,6 @@ BUILD_DESCRIPTION="$(GET_PROP "ro.build.description")"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.bootimage.build.fingerprint "$FINGERPRINT
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.id "$BUILD_ID
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.version.incremental "$INCREMENTAL
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.description "$BUILD_DESCRIPTION
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.product.vendor.model "$MODEL
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.product.vendor.name "$NAME
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.vbmeta.device_state locked"
