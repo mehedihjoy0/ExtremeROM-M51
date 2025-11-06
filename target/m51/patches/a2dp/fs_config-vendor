@@ -1,0 +1,121 @@
+vendor/lib/liba2dpoffload.so 0 0 
+644
+vendor/lib/libbluetooth_a2dpsink_session.so 0 0 
+644
+vendor/lib/libbluetooth_audio_session.so 0 0 
+644
+vendor/lib/libbluetooth_audio_session_qti.so 0 0 
+644
+vendor/lib/libbt-hidlclient.so 0 0 
+644
+vendor/lib/libbthost_if.so 0 0 
+644
+vendor/lib/libbtnv.so 0 0 
+644
+vendor/lib/hw/audio.a2dpsink.default.so 0 0 
+644
+vendor/lib/hw/audio.bluetooth.default.so 0 0 
+644
+vendor/lib/hw/audio.bluetooth_qti.default.so 0 0 
+644
+vendor/lib/hw/vendor.samsung.hardware.bluetooth.a2dp@1.0-impl.so 0 0 
+644
+vendor/lib/hw/vendor.samsung.hardware.bluetooth.a2dpsink@1.0-impl.so 0 0 
+644
+vendor/lib/hw/vendor.samsung.hardware.bluetooth.audio@2.1-impl.so 0 0 
+644
+vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so 0 0 
+644
+vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so 0 0 
+644
+vendor/lib/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so 0 0 
+644
+vendor/lib/com.qualcomm.qti.bluetooth_audio@1.0.so 0 0 
+644
+vendor/lib/libsehbluetooth_audio_session.so 0 0 
+644
+vendor/lib/vendor.qti.hardware.bluetooth_audio@2.0.so 0 0 
+644
+vendor/lib/vendor.qti.hardware.bluetooth_sar@1.0.so 0 0 
+644
+vendor/lib/vendor.qti.hardware.bluetooth_sar@1.1.so 0 0 
+644
+vendor/lib/vendor.samsung.hardware.bluetooth.a2dp@1.0.so 0 0 
+644
+vendor/lib/vendor.samsung.hardware.bluetooth.a2dpsink@1.0.so 0 0 
+644
+vendor/lib/vendor.samsung.hardware.bluetooth.audio@2.0.so 0 0 
+644
+vendor/lib/vendor.samsung.hardware.bluetooth.audio@2.1.so 0 0 
+644
+vendor/lib/vendor.samsung.hardware.bluetooth@2.0.so 0 0 
+644
+vendor/lib64/libbluetooth_a2dpsink_session.so 0 0 
+644
+vendor/lib64/libbluetooth_audio_session.so 0 0 
+644
+vendor/lib64/libbluetooth_audio_session_qti.so 0 0 
+644
+vendor/lib64/libbt-hidlclient.so 0 0 
+644
+vendor/lib64/libbthost_if.so 0 0 
+644
+vendor/lib64/libbtnv.so 0 0 
+644
+vendor/lib64/com.qualcomm.qti.bluetooth_audio@1.0.so 0 0 
+644
+vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so 0 0 
+644
+vendor/lib64/hw/audio.bluetooth.default.so 0 0 
+644
+vendor/lib64/hw/audio.bluetooth_qti.default.so 0 0 
+644
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so 0 0 
+644
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.0-impl.so 0 0 
+644
+vendor/lib64/hw/vendor.samsung.hardware.bluetooth.a2dp@1.0-impl.so 0 0 
+644
+vendor/lib64/hw/vendor.samsung.hardware.bluetooth.a2dpsink@1.0-impl.so 0 0 
+644
+vendor/lib64/hw/vendor.samsung.hardware.bluetooth.audio@2.1-impl.so 0 0 
+644
+vendor/lib64/hw/audio.a2dpsink.default.so 0 0 
+644
+vendor/lib64/libsehbluetooth_audio_session.so 0 0 
+644
+vendor/lib64/vendor.qti.hardware.bluetooth_audio@2.0.so 0 0 
+644
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so 0 0 
+644
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so 0 0 
+644
+vendor/lib64/vendor.samsung.hardware.bluetooth.a2dp@1.0.so 0 0 
+644
+vendor/lib64/vendor.samsung.hardware.bluetooth.a2dpsink@1.0.so 0 0 
+644
+vendor/lib64/vendor.samsung.hardware.bluetooth.audio@2.0.so 0 0 
+644
+vendor/lib64/vendor.samsung.hardware.bluetooth.audio@2.1.so 0 0 
+644
+vendor/lib64/vendor.samsung.hardware.bluetooth@2.0.so 0 0 
+644
+vendor/etc/bluetooth_audio_policy_configuration.xml 0 0 
+644
+vendor/etc/a2dpsink_audio_policy_configuration.xml 0 0 
+644
+vendor/etc/audio_platform_info.xml 0 0 
+644
+vendor/etc/audio_platform_info_qrd.xml 0 0 
+644
+vendor/etc/audio_platform_info_intcodec.xml 0 0 
+644
+vendor/etc/permissions/android.hardware.bluetooth_le.xml 0 0 
+644
+vendor/etc/permissions/android.hardware.bluetooth.xml 0 0 
+644
+vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc 0 0 
+644
+vendor/etc/audconf/OPEN/Bluetooth_cal.acdb 0 0 
+644
+vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti 1002 1002 755
