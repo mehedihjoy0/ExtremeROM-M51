@@ -1,0 +1,11 @@
+/vendor u:object_r:vendor_file:s0
+/vendor/etc u:object_r:vendor_file:s0
+/vendor/etc/SoundBoosterParam\.txt u:object_r:vendor_configs_file:s0
+/vendor/lib u:object_r:vendor_file:s0
+/vendor/lib/lib_SoundBooster_ver1000\.so u:object_r:vendor_lib_file:s0
+/vendor/lib/soundfx u:object_r:vendor_file:s0
+/vendor/lib/soundfx/libsamsungSoundbooster_plus\.so u:object_r:vendor_lib_file:s0
+/vendor/lib64 u:object_r:vendor_file:s0
+/vendor/lib64/lib_SoundBooster_ver1000\.so u:object_r:vendor_lib_file:s0
+/vendor/lib64/soundfx u:object_r:vendor_file:s0
+/vendor/lib64/soundfx/libsamsungSoundbooster_plus\.so u:object_r:vendor_lib_file:s0
