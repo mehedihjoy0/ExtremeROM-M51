@@ -1,48 +1,46 @@
-LOG "- Applying prop spoofer" 
-SECURITY_PATCH="$(GET_PROP "ro.build.version.security_patch")" 
-FINGERPRINT="$(GET_PROP "ro.system.build.fingerprint")" 
-MODEL="$(GET_PROP "ro.product.system.model")" 
-NAME="$(GET_PROP "ro.product.system.name")" 
-BUILD_ID="$(GET_PROP "ro.build.id")" 
-INCREMENTAL="$(GET_PROP "ro.build.version.incremental")" 
+BL_SPOOF="$(GET_PROP "ro.build.version.incremental")"
+MODEL_SPOOF="$(GET_PROP "ro.product.system.model")"
+
+echo "Rezetprop Setup"
+echo "Spoofed BL: "$BL_SPOOF
+echo "Spoofed Model: "$MODEL_SPOOF
+echo "Spoofed Product Code: "$SOURCE_PRODUCT_CODE
+
 {
-    echo ""
     echo "on property:service.bootanim.exit=1"
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -p -d persist.sys.pixelprops.games"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.flash.locked 1"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.vbmeta.device_state locked"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.verifiedbootstate green"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.veritymode enforcing"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.warranty_bit 0"
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.bootloader "$BL_SPOOF
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n sys.oem_unlock_allowed 0"
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n gsm.version.baseband "$BL_SPOOF","$BL_SPOOF
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ril.product_code "$SOURCE_PRODUCT_CODE
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ril.sw_ver "$BL_SPOOF
+    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.em.model "$MODEL_SPOOF
     echo "    exec u:r:init:s0 root root -- /system/bin/settings put global ram_expand_size_list 2,4,6,8"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config set_sync_disabled_for_tests persistent"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_cached_processes 256"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_phantom_processes 2147483647"
     echo "    exec u:r:init:s0 root root -- /system/bin/settings put global settings_enable_monitor_phantom_procs false"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_empty_time_millis 43200000"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.security_patch "$SECURITY_PATCH
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.fingerprint "$FINGERPRINT
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.bootimage.build.fingerprint "$FINGERPRINT
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.id "$BUILD_ID
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.build.version.incremental "$INCREMENTAL
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.product.vendor.model "$MODEL
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.product.vendor.name "$NAME
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.vbmeta.device_state locked"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.verifiedbootstate green"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.veritymode enforcing"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.warranty_bit 0"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.boot.vbmeta.device_state locked"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.boot.verifiedbootstate green"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.boot.veritymode enforcing"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.boot.warranty_bit 0"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.oem_unlock_supported 0"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.vendor.oem_unlock_supported 0"
+    echo ""
+    echo "on property:sys.unica.vbmeta.digest=*"
+    echo '    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.vbmeta.digest ${sys.unica.vbmeta.digest}'
     echo ""
 } >> "$WORK_DIR/system/system/etc/init/hw/init.rc"
 
 sed -i 's/${ro.boot.warranty_bit}/0/g' "$WORK_DIR/system/system/etc/init/init.rilcommon.rc"
 
+echo "Setting up SEPolicy"
 LINES="$(sed -n "/^(allow init init_exec\b/=" "$WORK_DIR/system/system/etc/selinux/plat_sepolicy.cil")"
 for l in $LINES; do
     sed -i "${l} s/)))/ execute_no_trans)))/" "$WORK_DIR/system/system/etc/selinux/plat_sepolicy.cil"
 done
+
+echo "Patching complete!"
+echo "Cleaning up..."
+BL_SPOOF=
+MODEL_SPOOF=
