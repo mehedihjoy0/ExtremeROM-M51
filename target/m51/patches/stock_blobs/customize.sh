@@ -61,11 +61,13 @@ ADD_TO_WORK_DIR "a73xqxx" "system" "system/lib/libhwui.so"
 ADD_TO_WORK_DIR "a73xqxx" "system" "system/lib64/libhwui.so"
 LOG_STEP_OUT
 
-LOG_STEP_IN "- Removing SoundBooster 1100 & 1050 libs"
+LOG_STEP_IN "- Adding stock SoundBooster libs"
 DELETE_FROM_WORK_DIR "system" "system/lib/lib_SoundBooster_ver1100.so"
 DELETE_FROM_WORK_DIR "system" "system/lib64/lib_SoundBooster_ver1100.so"
-DELETE_FROM_WORK_DIR "vendor" "lib/lib_SoundBooster_ver1050.so"
-DELETE_FROM_WORK_DIR "vendor" "lib64/lib_SoundBooster_ver1050.so"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib/lib_SoundBooster_ver1000.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib/libsamsungSoundbooster_plus_legacy.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib64/lib_SoundBooster_ver1000.so" 0 0 644 "u:object_r:system_lib_file:s0"
+ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/lib64/libsamsungSoundbooster_plus_legacy.so" 0 0 644 "u:object_r:system_lib_file:s0"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Fixing RIL"
@@ -146,49 +148,6 @@ LOG_STEP_OUT
 LOG_STEP_IN "- Adding a52qnsxx TUI app"
 ADD_TO_WORK_DIR "a52qnsxx" "system" "system/etc/sysconfig/preinstalled-packages-com.qualcomm.qti.services.secureui.xml" 0 0 644 "u:object_r:system_file:s0"
 ADD_TO_WORK_DIR "a52qnsxx" "system_ext" "app/com.qualcomm.qti.services.secureui/com.qualcomm.qti.services.secureui.apk" 0 0 644 "u:object_r:system_file:s0"
-LOG_STEP_OUT
-
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system_ext" "lib/libqcc_file_agent_sys.so" 0 0 644 "u:object_r:system_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "system_ext" "lib64/libqcc_file_agent_sys.so" 0 0 644 "u:object_r:system_file:s0"
-
-LOG_STEP_IN "- Fixing selinux entry"
-sed -i '/init\.svc\.vendor\.wvkprov_server_hal/d' "$WORK_DIR/vendor/etc/selinux/vendor_property_contexts"
-LOG_STEP_OUT
-
-LOG_STEP_IN "- Adding tlc dependencies"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib/vendor.qti.hardware.trustedui@1.0.so" 0 0 644 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib/vendor.qti.hardware.trustedui@1.1.so" 0 0 644 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib/vendor.qti.hardware.trustedui@1.2.so" 0 0 644 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib/vendor.qti.hardware.tui_comm@1.0.so" 0 0 644 "u:object_r:vendor_file:s0"
-
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.qti.hardware.trustedui@1.0.so" 0 0 644 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.qti.hardware.trustedui@1.1.so" 0 0 644 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.qti.hardware.trustedui@1.2.so" 0 0 644 "u:object_r:vendor_file:s0"
-ADD_TO_WORK_DIR "$SOURCE_FIRMWARE" "vendor" "lib64/vendor.qti.hardware.tui_comm@1.0.so" 0 0 644 "u:object_r:vendor_file:s0"
-
-mv "$WORK_DIR/vendor/lib/vendor.qti.hardware.trustedui@1.0.so" "$WORK_DIR/system/system/lib/"
-mv "$WORK_DIR/vendor/lib/vendor.qti.hardware.trustedui@1.1.so" "$WORK_DIR/system/system/lib/"
-mv "$WORK_DIR/vendor/lib/vendor.qti.hardware.trustedui@1.2.so" "$WORK_DIR/system/system/lib/"
-
-mv "$WORK_DIR/vendor/lib64/vendor.qti.hardware.trustedui@1.0.so" "$WORK_DIR/system/system/lib64/"
-mv "$WORK_DIR/vendor/lib64/vendor.qti.hardware.trustedui@1.1.so" "$WORK_DIR/system/system/lib64/"
-mv "$WORK_DIR/vendor/lib64/vendor.qti.hardware.trustedui@1.2.so" "$WORK_DIR/system/system/lib64/"
-
-echo "system/lib/vendor.qti.hardware.trustedui@1.0.so 0 0 644 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-system"
-echo "system/lib/vendor.qti.hardware.trustedui@1.1.so 0 0 644 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-system"
-echo "system/lib/vendor.qti.hardware.trustedui@1.2.so 0 0 644 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-system"
-
-echo "system/lib64/vendor.qti.hardware.trustedui@1.0.so 0 0 644 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-system"
-echo "system/lib64/vendor.qti.hardware.trustedui@1.1.so 0 0 644 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-system"
-echo "system/lib64/vendor.qti.hardware.trustedui@1.2.so 0 0 644 capabilities=0x0" >> "$WORK_DIR/configs/fs_config-system"
-
-echo "/system/lib/vendor\.qti\.hardware\.trustedui@1\.0\.so u:object_r:system_lib_file:s0" >> "$WORK_DIR/configs/file_context-system"
-echo "/system/lib/vendor\.qti\.hardware\.trustedui@1\.1\.so u:object_r:system_lib_file:s0" >> "$WORK_DIR/configs/file_context-system"
-echo "/system/lib/vendor\.qti\.hardware\.trustedui@1\.2\.so u:object_r:system_lib_file:s0" >> "$WORK_DIR/configs/file_context-system"
-
-echo "/system/lib64/vendor\.qti\.hardware\.trustedui@1\.0\.so u:object_r:system_lib_file:s0" >> "$WORK_DIR/configs/file_context-system"
-echo "/system/lib64/vendor\.qti\.hardware\.trustedui@1\.1\.so u:object_r:system_lib_file:s0" >> "$WORK_DIR/configs/file_context-system"
-echo "/system/lib64/vendor\.qti\.hardware\.trustedui@1\.2\.so u:object_r:system_lib_file:s0" >> "$WORK_DIR/configs/file_context-system"
 LOG_STEP_OUT
 
 LOG_STEP_IN "- Fixing Google Assistant"

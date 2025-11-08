@@ -145,9 +145,3 @@ HIDL_HAL="<hal format=\"hidl\">\\n        <name>vendor.samsung.hardware.snap</na
 AIDL_HAL="<hal format=\"aidl\">\\n        <name>vendor.samsung.hardware.snap</name>\\n        <fqname>ISehSnap/default</fqname>\\n    </hal>"
 sed -i -e ':a' -e 'N' -e "$ !b a" -e "s|${HIDL_HAL}|${AIDL_HAL}|g" "$MANIFEST"
 LOG_STEP_OUT
-
-LOG "- Fixing SNAP AIDL SELinux rule"
-sed -i "s/(allow snap_hidl hal_snap_service (service_manager (find)))/(allow snap_hidl hal_snap_service (service_manager (add find)))/g" "$WORK_DIR/vendor/etc/selinux/vendor_sepolicy.cil"
-
-LOG "- Fixing JSQZ node permission"
-echo "/dev/jsqz                 0660   mediacodec     camera" >> $WORK_DIR/vendor/ueventd.rc
