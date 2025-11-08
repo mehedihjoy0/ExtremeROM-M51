@@ -7,6 +7,7 @@ echo "Spoofed Model: "$MODEL_SPOOF
 echo "Spoofed Product Code: "$SOURCE_PRODUCT_CODE
 
 {
+    echo ""
     echo "on property:service.bootanim.exit=1"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -p -d persist.sys.pixelprops.games"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.flash.locked 1"
