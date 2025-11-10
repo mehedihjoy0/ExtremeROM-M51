@@ -1,10 +1,4 @@
-BL_SPOOF="$(GET_PROP "ro.build.version.incremental")"
-MODEL_SPOOF="$(GET_PROP "ro.product.system.model")"
-
-echo "Rezetprop Setup"
-echo "Spoofed BL: "$BL_SPOOF
-echo "Spoofed Model: "$MODEL_SPOOF
-echo "Spoofed Product Code: "$SOURCE_PRODUCT_CODE
+LOG "Rezetprop Setup"
 
 {
     echo ""
@@ -15,21 +9,13 @@ echo "Spoofed Product Code: "$SOURCE_PRODUCT_CODE
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.verifiedbootstate green"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.veritymode enforcing"
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.warranty_bit 0"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.bootloader "$BL_SPOOF
     echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n sys.oem_unlock_allowed 0"
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n gsm.version.baseband "$BL_SPOOF","$BL_SPOOF
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ril.product_code "$SOURCE_PRODUCT_CODE
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ril.sw_ver "$BL_SPOOF
-    echo "    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.em.model "$MODEL_SPOOF
     echo "    exec u:r:init:s0 root root -- /system/bin/settings put global ram_expand_size_list 2,4,6,8"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config set_sync_disabled_for_tests persistent"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_cached_processes 256"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_phantom_processes 2147483647"
     echo "    exec u:r:init:s0 root root -- /system/bin/settings put global settings_enable_monitor_phantom_procs false"
     echo "    exec u:r:init:s0 root root -- /system/bin/device_config put activity_manager max_empty_time_millis 43200000"
-    echo ""
-    echo "on property:sys.unica.vbmeta.digest=*"
-    echo '    exec u:r:init:s0 root root -- /system/bin/rezetprop -n ro.boot.vbmeta.digest ${sys.unica.vbmeta.digest}'
     echo ""
 } >> "$WORK_DIR/system/system/etc/init/hw/init.rc"
 
@@ -42,6 +28,3 @@ for l in $LINES; do
 done
 
 echo "Patching complete!"
-echo "Cleaning up..."
-BL_SPOOF=
-MODEL_SPOOF=
