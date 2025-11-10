@@ -10,7 +10,7 @@ on property:mdc.singlesku.activated=*
 on property:mdc.unified.activated=true
     oem_key_update
 on post-fs
-    setprop ro.omc.build.version S938BOXM4AYF1
+    setprop ro.omc.build.version S911BXXS8DYI3
     setprop ro.omc.build.id 96947748
     setprop ro.omc.changetype DATA_RESET_ON,TRUE
     setprop ro.simbased.changetype NO_DFLT_CSC,OMC

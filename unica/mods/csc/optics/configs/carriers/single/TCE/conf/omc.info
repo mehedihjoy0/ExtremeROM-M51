@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <omcInfo>
   <contentType>0</contentType>
-  <version>SAOMC_SM-S938B_OXM_TCE_15_0012</version>
+  <version>SAOMC_SM-S911B_OXM_TCE_15_0012</version>
   <model>
-    <name>SM-S938B</name>
+    <name>SM-S911B</name>
   </model>
   <catalog>
     <customer>yes</customer>
