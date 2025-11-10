@@ -158,3 +158,7 @@ ADD_TO_WORK_DIR "a73xqxx" "product" "priv-app/HotwordEnrollmentXGoogleEx3HEXAGON
 DELETE_FROM_WORK_DIR "product" "priv-app/HotwordEnrollmentOKGoogleEx3HEXAGON/oat"
 DELETE_FROM_WORK_DIR "product" "priv-app/HotwordEnrollmentXGoogleEx3HEXAGON/oat"
 LOG_STEP_OUT
+
+LOG_STEP_IN "- Adding pa1qxxx surfaceflinger"
+ADD_TO_WORK_DIR "pa1qxxx" "system" "bin/surfaceflinger" 0 2000 755 "u:object_r:surfaceflinger_exec:s0"
+LOG_STEP_OUT
